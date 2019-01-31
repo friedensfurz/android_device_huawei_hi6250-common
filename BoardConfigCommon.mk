@@ -23,8 +23,6 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
-include build/make/target/board/generic_arm64_a/BoardConfig.mk
-
 VENDOR_PATH := device/huawei/hi6250-common
 
 # Kernel
