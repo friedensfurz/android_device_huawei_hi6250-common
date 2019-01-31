@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2018 The LineageOS Project
+# Copyright 2019 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,18 @@
 # limitations under the License.
 #
 
+# This contains the module build definitions for the hardware-specific
+# components for this device.
+#
+# As much as possible, those components should be built unconditionally,
+# with device-specific names to avoid collisions, to avoid device-specific
+# bitrot and build breakages. Building a component unconditionally does
+# *not* include it on all devices, so it is safe even with hardware-specific
+# components.
+
 include build/make/target/board/generic_arm64_a/BoardConfig.mk
 
-VENDOR_PATH := device/huawei/kirin970-common
+VENDOR_PATH := device/huawei/hi6250-common
 
 # Platform
 TARGET_ARCH := arm64
@@ -71,7 +80,7 @@ TARGET_SYSTEM_PROP := $(VENDOR_PATH)/system.prop
 ifeq ($(TARGET_AOSP_BASED),)
 BOARD_PROVIDES_BOOTLOADER_MESSAGE := true
 endif
-TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.kirin970
+TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.hi6250
 
 # Release tools
 TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)/releasetools

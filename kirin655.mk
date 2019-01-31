@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2018 The LineageOS Project
+# Copyright 2019 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,16 @@
 # limitations under the License.
 #
 
-$(call inherit-product-if-exists, vendor/huawei/kirin970-common/kirin970-common-vendor.mk)
+# This contains the module build definitions for the hardware-specific
+# components for this device.
+#
+# As much as possible, those components should be built unconditionally,
+# with device-specific names to avoid collisions, to avoid device-specific
+# bitrot and build breakages. Building a component unconditionally does
+# *not* include it on all devices, so it is safe even with hardware-specific
+# components.
+
+$(call inherit-product-if-exists, vendor/huawei/hi6250-common/hi6250-common-vendor.mk)
 
 # APN configs
 ifneq ($(TARGET_AOSP_BASED),)
@@ -39,9 +48,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     init.bcm43xx.rc \
     init.hisi.rc \
-    init.kirin970.rc \
-    init.kirin970.ab.rc \
-    init.kirin970.environ.rc
+    init.hi6250.rc \
+    init.hi6250.ab.rc \
+    init.hi6250.environ.rc
 
 # Display
 PRODUCT_PACKAGES += \
@@ -96,7 +105,7 @@ PRODUCT_PACKAGES += \
 
 # Release tools
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/releasetools/releasetools.kirin970.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/releasetools.kirin970.sh
+    $(LOCAL_PATH)/releasetools/releasetools.hi6250.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/releasetools.hi6250.sh
 
 # Remove unwanted packages
 PRODUCT_PACKAGES += \
@@ -113,7 +122,7 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service.kirin970
+    android.hardware.usb@1.0-service.hi6250
 
 # VNDK
 PRODUCT_COPY_FILES += \
